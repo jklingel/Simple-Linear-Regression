@@ -28,3 +28,7 @@ a=y-bar - b*x-bar
 Using GCC, compile source code with
 
 $ gcc -o simpLinearRegression simpLinearRegression.c -lm
+
+What is missing
+
+This project was just a little fun project for me to get better in programming C code but also to understand machine learning better. Next project will definitely be to solve multiple linear correlations. The code at hand is not fully tested and does not catch all eventualities. Also, it would be nice if the given house prices and sizes are not hard-coded but read in from a file. But I wanted to keep it as simple as possible. 
