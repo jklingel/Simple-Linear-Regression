@@ -27,7 +27,7 @@
 /* Jan Klingel, 06/2026                                             */
 
 float getSigma(val,n)
-double val[MAXVAL];
+float val[MAXVAL];
 int n;
 {
   int i;
@@ -57,7 +57,7 @@ int n;
     variance += val[i];
     i++;
   }
-  variance = variance/n;
+  variance /= n;
 
   // Calculate sigma = square root of variance
   return(sqrtf(variance));
@@ -65,9 +65,9 @@ int n;
 
 // calculate_correlation()
 // Function to calculate Pearson's correlation coefficient
-float calculate_correlation(double x[], double y[], int n) {
-    double sum_X = 0, sum_Y = 0, sum_XY = 0;
-    double sum_X2 = 0, sum_Y2 = 0;
+float calculate_correlation(float x[], float y[], int n) {
+    float sum_X = 0, sum_Y = 0, sum_XY = 0;
+    float sum_X2 = 0, sum_Y2 = 0;
 
     for (int i = 0; i < n; i++) {
         sum_X += x[i];
@@ -78,13 +78,13 @@ float calculate_correlation(double x[], double y[], int n) {
     }
 
     // Numerator calculation (above the fraction bar)
-    double numerator = (n * sum_XY) - (sum_X * sum_Y);
+    float numerator = (n * sum_XY) - (sum_X * sum_Y);
 
     // Denominator calculation (below the fraction bar)
-    double denominator = sqrt((n * sum_X2 - (sum_X * sum_X)) * (n * sum_Y2 - (sum_Y * sum_Y)));
+    float denominator = sqrtf((n * sum_X2 - (sum_X * sum_X)) * (n * sum_Y2 - (sum_Y * sum_Y)));
 
     // Handle edge case where denominator is zero (to avoid division by zero error)
-    if (denominator == 0)
+    if (denominator == 0.0)
         return 0.0;
 
     return numerator / denominator; // equals r
@@ -94,11 +94,11 @@ int main(void) {
   unsigned int n, i;
   int pprice = 0; // predicted price
   int squaref = 0; // square footage of given house
-  double r,sx,sy,a,b = 0.0; // correlation, standard deviation, coefficient a,b
+  float r,sx,sy,a,b = 0.0; // correlation, standard deviation, coefficient a,b
   int xbar, ybar; // means of all x and y values
 
-  double price[MAXVAL] = {316000,277000,155000,253000,211000,329000,317000,360000,204000,250000};
-  double square[MAXVAL] = {1852,1975,1176,1550,1458,2689,2259,2763,1325,1992};
+  float price[MAXVAL] = {316000,277000,155000,253000,211000,329000,317000,360000,204000,250000};
+  float square[MAXVAL] = {1852,1975,1176,1550,1458,2689,2259,2763,1325,1992};
 
   // Calculate number of elements in price[];
   n = 0;
