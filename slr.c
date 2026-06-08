@@ -6,7 +6,7 @@
 #include <stdio.h>
 #include <math.h>
 
-#define MAXVAL 100
+#define MAXVAL 50
 
 float getSigma(val,n)
 float val[MAXVAL];
@@ -71,69 +71,69 @@ int n;
 int main(void)
 {
   int i, n = 0;
-  int pprice = 0;
+  float pprice = 0.0;
   int squaref = 0;
   float r,sx,sy,a,b = 0.0;
-  int xbar, ybar;
+  float xbar, ybar;
 
   float price[MAXVAL];
-  price[0] = 3160;
-  price[1] = 2770;
-  price[2] = 1550;
-  price[3] = 2530;
-  price[4] = 2110;
-  price[5] = 3290;
-  price[6] = 3170;
-  price[7] = 3600;
-  price[8] = 2040;
-  price[9] = 2500;
+  price[0] = 316000.0;
+  price[1] = 277000.0;
+  price[2] = 155000.0;
+  price[3] = 253000.0;
+  price[4] = 211000.0;
+  price[5] = 329000.0;
+  price[6] = 317000.0;
+  price[7] = 360000.0;
+  price[8] = 204000.0;
+  price[9] = 250000.0;
   price[10] = '\0';
 
   float square[MAXVAL];
-  square[0] = 1852;
-  square[1] = 1975;
-  square[2] = 1176;
-  square[3] = 1550;
-  square[4] = 1458;
-  square[5] = 2689;
-  square[6] = 2259;
-  square[7] = 2763;
-  square[8] = 1325;
-  square[9] = 1992;
+  square[0] = 1852.0;
+  square[1] = 1975.0;
+  square[2] = 1176.0;
+  square[3] = 1550.0;
+  square[4] = 1458.0;
+  square[5] = 2689.0;
+  square[6] = 2259.0;
+  square[7] = 2763.0;
+  square[8] = 1325.0;
+  square[9] = 1992.0;
   square[10] = '\0';
 
   while(price[n] != '\0')
     n++;
   printf("Number of Elements n: %d\n", n);
 
-  xbar = 0;
+  xbar = 0.0;
   for(i=0;i<n;i++)
     xbar += square[i];
   xbar /= n;
-  printf("xbar: %d\n", xbar);
+  printf("xbar: %f\n", xbar);
 
-  ybar = 0;
+  ybar = 0.0;
   for(i=0;i<n;i++)
     ybar += price[i];
   ybar /= n;
-  printf("ybar: %d\n", ybar);
+  printf("ybar: %f\n", ybar);
 
   r = calculate_correlation(square,price,n);
   printf("r: %f\n", r);
 
   sx = getSigma(square,n);
-  printf("Standard deviation sx: %f\n", sx);
+  printf("Standard deviation sx: %.2f\n", sx);
 
   sy = getSigma(price,n);
-  printf("Standard deviation sy: %f\n", sy);
+  printf("Standard deviation sy: %.2f\n", sy);
 
   b = r*sy/sx;
   a = ybar-b*xbar;
-  printf("Coefficient a and b: %f, %f\n", a, b);
+  printf("Coefficient a and b: %.2f, %.2f\n", a, b);
 
   printf("Enter the square footage of the house: ");
   scanf("%d", &squaref);
   pprice = b*squaref+a;
-  printf("The estimated house price is: %d\n", pprice);
+  printf("The estimated house price is: %.0f\n", pprice);
   return(0);
 }
